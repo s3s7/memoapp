@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memo アプリ</title>
+  <style>
+    body {
+      background-color: #87CEFA;
+      /* 綺麗な青色 */
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    h1,
+    h2 {
+      color: #fff;
+    }
+
+    form,
+    ul,
+    p {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4682B4;
+      /* ボタンの色 */
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5a9bd4;
+      /* ホバー時の色 */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Memo アプリ</h1>
+  <label for="text">メモを入力してください:</label>
+
+  <form method="post">
+    <input type="text" id="text" name="text" required>
+    <button type="submit">追加</button>
+  </form>
+  <h2>メモ一覧:</h2>
+  <ul>
+    {{range .}}
+    <li>{{.ID}}: {{.Text}}
+      <form method="post" action="/" style="display:inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="id" value="{{.ID}}">
+        <button type="submit">削除</button>
+      </form>
+      <a href="/edit?id={{.ID}}">編集</a>
+    </li>
+    {{else}}
+    <li>メモはありません。</li>
+    {{end}}
+  </ul>
+  <p><a href="/mypage">マイページ</a></p>
+</body>
+
+</html>

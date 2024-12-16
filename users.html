@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+</head>
+
+<body style="background-color:rgba(26, 88, 221, 0.728);">
+  <h1>Users</h1>
+  <ul>
+    {{range $username, $password := .}}
+    <li>{{ $username }}
+      <form method=" post" action="/users" style="display:inline;">
+        <input type="hidden" name="username" value="{{ $username }}">
+        <button type="submit">削除</button>
+      </form>
+    </li>
+    {{else}}
+    <li>ユーザーがいません。</li>
+    {{end}}
+  </ul>
+  <p><a href="/">ホームに戻る</a></p>
+</body>
+
+</html>

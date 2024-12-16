@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Memo</title>
+  <style>
+    body {
+      background-color: #87CEFA;
+      /* 綺麗な青色 */
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    h1,
+    h2 {
+      color: #fff;
+    }
+
+    form,
+    ul,
+    p {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4682B4;
+      /* ボタンの色 */
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5a9bd4;
+      /* ホバー時の色 */
+    }
+  </style>
+</head>
+
+<body style="background-color:rgba(26, 88, 221, 0.728);">
+  <h1>Edit Memo</h1>
+  <form method=" post">
+    <input type="hidden" name="id" value="{{.ID}}">
+    <label for="text">メモのテキストを編集してください:</label>
+    <input type="text" id="text" name="text" value="{{.Text}}" required>
+    <button type="submit">更新</button>
+  </form>
+</body>
+
+</html>

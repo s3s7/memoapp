@@ -1,0 +1,43 @@
+<html>
+
+<head></head>
+<body>
+<div id='map'></div>
+
+<style>
+#map {
+  height: 500px;
+width: 500px;
+}
+</style>
+
+<script>
+let map
+
+const display = document.getElementById('display')
+
+function initMap(){
+
+  　// 位置情報を取得する
+    navigator.geolocation.getCurrentPosition(function (position) {
+        LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      　// 取得した位置情報を中心に表示
+        map = new google.maps.Map(document.getElementById('map'), {
+center: LatLng,
+zoom: 15
+});
+
+      　// マーカーを立てる
+        var marker = new google.maps.Marker({
+map : map,
+position : LatLng
+});
+        });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ .google_map_api_key }}&callback=initMap"async defer>
+</script>
+</body>
+</html>
