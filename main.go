@@ -177,6 +177,25 @@ func mypageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "mypage.html", username)
 }
 
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
+	if !isLoggedIn(r) {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		return
+	}
+
+	cookie, _ := r.Cookie("session_id")
+	delete(sessions, cookie.Value)
+
+	http.SetCookie(w, &http.Cookie{
+		Name:   "session_id",
+		Value:  "",
+		Path:   "/",
+		MaxAge: -1,
+	})
+
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
+}
+
 func isLoggedIn(r *http.Request) bool {
 	cookie, err := r.Cookie("session_id")
 	if err != nil {
@@ -193,5 +212,6 @@ func main() {
 	http.HandleFunc("/register", registerHandler)
 	http.HandleFunc("/users", deleteUserHandler)
 	http.HandleFunc("/mypage", mypageHandler)
+	http.HandleFunc("/logout", logoutHandler)
 	http.ListenAndServe(":8080", nil)
 }

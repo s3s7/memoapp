@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Memo アプリ</title>
+  <title>Memo App</title>
   <style>
     body {
       background-color: #87CEFA;
@@ -39,14 +39,23 @@
       background-color: #5a9bd4;
       /* ホバー時の色 */
     }
+
+    input[type="text"] {
+      width: 40%;
+      /* 入力欄の幅を縮める */
+      height: 3em;
+      /* 入力欄の高さを少し伸ばす */
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 
 <body>
-  <h1>Memo アプリ</h1>
-  <label for="text">メモを入力してください:</label>
-
+  <h1>Memo App</h1>
   <form method="post">
+    <label for="text">メモを入力してください:</label><br>
     <input type="text" id="text" name="text" required>
     <button type="submit">追加</button>
   </form>
@@ -66,6 +75,7 @@
     {{end}}
   </ul>
   <p><a href="/mypage">マイページ</a></p>
+  <p><a href="/logout">ログアウト</a></p>
 </body>
 
 </html>
